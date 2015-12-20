@@ -37,7 +37,9 @@ namespace Sut.WinForms.WorkflowsTest
         public void StepThroughWizard()
         {
             Image screenShot = UITestControl.Desktop.CaptureImage();
-            screenShot.Save(Path.Combine(TestContext.TestResultsDirectory, "desktopscreenshot.jpg"), ImageFormat.Png);
+            string fileName = Path.Combine(TestContext.TestResultsDirectory, "desktopscreenshot.png");
+            screenShot.Save(fileName, ImageFormat.Png);
+            TestContext.AddResultFile(fileName);
 
             // Arrange
             var workflow = new WizardWorkflow(nameWizardPage);

@@ -24,15 +24,6 @@ namespace Sut.PeripheralInputTest
         public TestContext TestContext { get; set; }
 
         /// <summary>
-        /// Runs once before all tests.
-        /// </summary>
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext testContext)
-        {
-            Playback.PlaybackSettings.SendKeysAsScanCode = true;
-        }
-
-        /// <summary>
         /// Runs before each test.
         /// </summary>
         [TestInitialize]
