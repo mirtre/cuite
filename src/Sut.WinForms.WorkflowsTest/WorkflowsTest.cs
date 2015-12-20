@@ -6,6 +6,10 @@ using Sut.WinForms.WorkflowsTest.Workflows;
 
 namespace Sut.WinForms.WorkflowsTest
 {
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
+
     [CodedUITest]
 #if DEBUG
     [DeploymentItem(@"..\..\..\Sut.WinForms.Workflows\bin\Debug\Sut.WinForms.Workflows.exe")]
@@ -32,6 +36,9 @@ namespace Sut.WinForms.WorkflowsTest
         [TestMethod]
         public void StepThroughWizard()
         {
+            Image screenShot = UITestControl.Desktop.CaptureImage();
+            screenShot.Save(Path.Combine(TestContext.TestResultsDirectory, "desktopscreenshot.jpg"), ImageFormat.Png);
+
             // Arrange
             var workflow = new WizardWorkflow(nameWizardPage);
 
