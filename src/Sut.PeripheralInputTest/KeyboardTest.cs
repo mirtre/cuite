@@ -6,6 +6,10 @@ using Sut.PeripheralInputTest.ObjectRepository;
 
 namespace Sut.PeripheralInputTest
 {
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+
     [CodedUITest]
 #if DEBUG
     [DeploymentItem(@"..\..\..\Sut.PeripheralInput\bin\Debug\Sut.PeripheralInput.exe")]
@@ -30,6 +34,23 @@ namespace Sut.PeripheralInputTest
         public void TestInitialize()
         {
             mainScreen = Screen.Launch<MainScreen>(ApplicationFilePath);
+        }
+
+        /// <summary>
+        /// Runs after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            Trace.WriteLine(string.Format("Test Results Directory: {0}", TestContext.TestResultsDirectory));
+
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                string fileName = Path.Combine(TestContext.TestResultsDirectory, "Failure.png");
+                image.Save(fileName);
+                TestContext.AddResultFile(fileName);
+            }
         }
 
         [TestMethod]

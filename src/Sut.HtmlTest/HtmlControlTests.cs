@@ -19,6 +19,8 @@ using CUITControls = Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 
 namespace Sut.HtmlTest
 {
+    using System.Drawing;
+
     [CodedUITest]
     [DeploymentItem("TestHtmlPage.html")]
     public class HtmlControlTests
@@ -48,6 +50,14 @@ namespace Sut.HtmlTest
         public void TestCleanup()
         {
             Trace.WriteLine(string.Format("Test Results Directory: {0}", TestContext.TestResultsDirectory));
+
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                string fileName = Path.Combine(TestContext.TestResultsDirectory, "Failure.png");
+                image.Save(fileName);
+                TestContext.AddResultFile(fileName);
+            }
         }
 
         [TestMethod]

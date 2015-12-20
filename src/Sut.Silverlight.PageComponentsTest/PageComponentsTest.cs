@@ -7,6 +7,9 @@ using Sut.Silverlight.PageComponentsTest.ObjectRepository;
 
 namespace Sut.Silverlight.PageComponentsTest
 {
+    using System.Diagnostics;
+    using System.Drawing;
+
     [CodedUITest]
     [DeploymentItem("Sut.Silverlight.PageComponents.html")]
 #if DEBUG
@@ -42,6 +45,23 @@ namespace Sut.Silverlight.PageComponentsTest
         public void TestInitialize()
         {
             mainPage = Page.Launch<MainPage>(WebServer.RootUrl + "Sut.Silverlight.PageComponents.html");
+        }
+
+        /// <summary>
+        /// Runs after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            Trace.WriteLine(string.Format("Test Results Directory: {0}", TestContext.TestResultsDirectory));
+
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                string fileName = Path.Combine(TestContext.TestResultsDirectory, "Failure.png");
+                image.Save(fileName);
+                TestContext.AddResultFile(fileName);
+            }
         }
 
         [TestMethod]

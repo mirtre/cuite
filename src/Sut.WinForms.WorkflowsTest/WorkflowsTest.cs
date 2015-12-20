@@ -31,16 +31,23 @@ namespace Sut.WinForms.WorkflowsTest
         public void TestInitialize()
         {
             nameWizardPage = Screen.Launch<NameWizardPage>(ApplicationFilePath);
+        }﻿﻿﻿
+        
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                string fileName = Path.Combine(TestContext.TestResultsDirectory, "Failure.png");
+                image.Save(fileName);
+                TestContext.AddResultFile(fileName);
+            }
         }
 
         [TestMethod]
         public void StepThroughWizard()
         {
-            Image screenShot = UITestControl.Desktop.CaptureImage();
-            string fileName = Path.Combine(TestContext.TestResultsDirectory, "desktopscreenshot.png");
-            screenShot.Save(fileName, ImageFormat.Png);
-            TestContext.AddResultFile(fileName);
-
             // Arrange
             var workflow = new WizardWorkflow(nameWizardPage);
 
