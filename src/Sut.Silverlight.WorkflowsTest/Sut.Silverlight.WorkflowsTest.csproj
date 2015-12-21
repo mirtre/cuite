@@ -69,6 +69,7 @@
     <Compile Include="Workflows\WizardWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Sut.Silverlight.Workflows.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
