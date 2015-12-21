@@ -6,9 +6,11 @@ using Sut.WinForms.WorkflowsTest.Workflows;
 
 namespace Sut.WinForms.WorkflowsTest
 {
+    using System.Diagnostics;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
+    using TestHelpers;
 
     [CodedUITest]
 #if DEBUG
@@ -31,11 +33,15 @@ namespace Sut.WinForms.WorkflowsTest
         public void TestInitialize()
         {
             nameWizardPage = Screen.Launch<NameWizardPage>(ApplicationFilePath);
+
+            CustomPlaybackSettings.Initialize();
         }﻿﻿﻿
         
         [TestCleanup]
         public void TestCleanup()
         {
+            Trace.WriteLine(string.Format("Test Results Directory: {0}", TestContext.TestResultsDirectory));
+
             if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             {
                 Image image = UITestControl.Desktop.CaptureImage();

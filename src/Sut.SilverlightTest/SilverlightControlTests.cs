@@ -11,6 +11,8 @@ using Sut.SilverlightTest.ObjectRepository;
 
 namespace Sut.SilverlightTest
 {
+    using TestHelpers;
+
     [CodedUITest]
     [DeploymentItem("Sut.Silverlight.html")]
 #if DEBUG
@@ -39,6 +41,12 @@ namespace Sut.SilverlightTest
         {
             WebServer.StopServer();
         }
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            CustomPlaybackSettings.Initialize();
+        }﻿﻿﻿
 
         [TestMethod]
         public void SlButtonAndEditAndDTP_ClickAndSetTextAndSelectedDateAsString_Succeeds()

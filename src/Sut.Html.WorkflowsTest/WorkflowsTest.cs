@@ -20,6 +20,12 @@ namespace Sut.Html.WorkflowsTest
         ///</summary>
         public TestContext TestContext { get; set; }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            CustomPlaybackSettings.Initialize();
+        }﻿﻿﻿
+
         [TestMethod]
         public void StepThroughWizard()
         {

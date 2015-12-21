@@ -10,6 +10,7 @@ namespace Sut.PeripheralInputTest
     using System.Diagnostics;
     using System.Drawing;
     using System.IO;
+    using TestHelpers;
 
     [CodedUITest]
 #if DEBUG
@@ -32,6 +33,8 @@ namespace Sut.PeripheralInputTest
         public void TestInitialize()
         {
             mainScreen = Screen.Launch<MainScreen>(ApplicationFilePath);
+
+            CustomPlaybackSettings.Initialize();
         }
 
         /// <summary>

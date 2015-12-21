@@ -41,6 +41,8 @@ namespace Sut.HtmlTest
         public void TestInitialize()
         {
             //BrowserWindow.CloseAllBrowsers();
+
+            CustomPlaybackSettings.Initialize();
         }
 
         /// <summary>

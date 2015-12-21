@@ -9,6 +9,7 @@ namespace Sut.Silverlight.PageComponentsTest
 {
     using System.Diagnostics;
     using System.Drawing;
+    using TestHelpers;
 
     [CodedUITest]
     [DeploymentItem("Sut.Silverlight.PageComponents.html")]
@@ -45,6 +46,8 @@ namespace Sut.Silverlight.PageComponentsTest
         public void TestInitialize()
         {
             mainPage = Page.Launch<MainPage>(WebServer.RootUrl + "Sut.Silverlight.PageComponents.html");
+
+            CustomPlaybackSettings.Initialize();
         }
 
         /// <summary>
