@@ -31,6 +31,8 @@
             Trace.WriteLine(string.Format("Playback.PlaybackSettings.WaitForReadyLevel: {0}", Playback.PlaybackSettings.WaitForReadyLevel));
             Trace.WriteLine(string.Format("Playback.PlaybackSettings.WaitForReadyTimeout: {0}", Playback.PlaybackSettings.WaitForReadyTimeout));
 
+            Keyboard.SendKeysDelay = 1000; // 1-second delay between keystrokes
+
             // Add the error handler
             //Playback.PlaybackError -= OnPlaybackError; // Remove the handler if it's already added
             //Playback.PlaybackError += OnPlaybackError; // Ta dah...
